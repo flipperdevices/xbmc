@@ -147,6 +147,7 @@ private:
   void SendFocusChange(bool focus);
   bool SetResolutionExternal(bool fullScreen, RESOLUTION_INFO const& res);
   void SetResolutionInternal(CSizeInt size, int scale, IShellSurface::StateBitset state, bool sizeIncludesDecoration, bool mustAck = false, std::uint32_t configureSerial = 0u);
+  RESOLUTION FindOrAddCustomResolution(CSizeInt size, float refreshRate, std::string const& output);
   struct Sizes
   {
     CSizeInt surfaceSize;
