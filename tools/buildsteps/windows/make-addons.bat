@@ -153,6 +153,15 @@ FOR %%a IN (%ADDONS_TO_MAKE%) DO (
 )
 
 rem everything was fine
+rem Per-add-on failures are only recorded in .failure above, so without this the
+rem script falls through to EXIT /B 0 with a failing add-on in the list.
+IF EXIST "%ADDONS_FAILURE_FILE%" (
+  ECHO Failed to build addons:
+  TYPE "%ADDONS_FAILURE_FILE%"
+  ECHO See %ERRORFILE% for more details
+  SET EXITCODE=1
+  GOTO END
+)
 GOTO END
 
 :ERROR
